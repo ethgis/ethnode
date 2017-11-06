@@ -12,6 +12,7 @@
     virtualenv_dir: "/home/ubuntu/.venvs"
     site_url: "http://ethiopia.terranodo.co/" # The public url of the GeoNode instance
     geoserver_url: "http://build.geonode.org/geoserver/latest/geoserver-2.12.x.war" # geoserver_url should match what is found in dev_config.yml
+    geoserver_data_url: "http://build.geonode.org/geoserver/latest/data-2.12.x.zip"
     pg_max_connections: 100
     pg_shared_buffers: 128MB
     tomcat_xms: "1024M"
