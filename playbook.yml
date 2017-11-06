@@ -6,7 +6,8 @@
     github_user: geonode
     server_name: ethiopia.terranodo.co
     deploy_user: ubuntu
-    code_repository: https://github.com/ethgis/ethnode.git" # e.g., "https://github.com/GeoNode/ethnode.git"
+    geonode_version: 2.6.3
+    code_repository: "https://github.com/ethgis/ethnode.git" # e.g., "https://github.com/GeoNode/ethnode.git"
     branch_name: master
     virtualenv_dir: "/home/ubuntu/.venvs"
     site_url: "http://ethiopia.terranodo.co/" # The public url of the GeoNode instance
@@ -23,24 +24,16 @@
       become: yes
       become_user: root
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-    - name: 'Reconfigue Locales'
+    - name: 'Reconfigure Locales'
       become: yes
       become_user: root
-      shell: ""
+      shell: "ls"
       with_items:
         - "export LANGUAGE=en_US.UTF-8"
         - "export LANG=en_US.UTF-8"
         - "export LC_ALL=en_US.UTF-8"
         - "locale-gen --purge en_US.UTF-8"
         - "echo 'LANG=en_US.UTF-8\nLANGUAGE=en_US:en\n' > /etc/default/locale"
-    - name: "Install cul, vim, and unzip"
-      become: yes
-      become_user: root
-      apt: name="" state=latest
-      with_items:
-        - curl
-        - vim
-        - unzip
     - setup: # aka gather_facts
   roles:
      - { role: geonode }
