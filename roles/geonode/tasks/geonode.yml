@@ -92,11 +92,7 @@
   git: repo={{geonode_repository}} version={{geonode_version}} dest={{app_code_dir}}/geonode
 
 - name: install default geonode version {{geonode_version}}
-  pip: name=file://{{app_code_dir}}/geonode
-  editable=true
-  state=present
-  version={{geonode_version}}
-  virtualenv={{virtualenv_dir}}/{{app_name}}
+  pip: name=file:///{{app_code_dir}}/geonode virtualenv={{virtualenv_dir}}/{{app_name}} extra_args='-e'
 
 - name: check if requirements file exists
   stat:
