@@ -6,7 +6,8 @@
     github_user: geonode
     server_name: ethiopia.terranodo.co
     deploy_user: ubuntu
-    geonode_version: 2.6.3
+    geonode_version: "ansible-installation"
+    geonode_repo: "https://github.com/ingenieroariel/geonode.git"
     code_repository: "https://github.com/ethgis/ethnode.git" # e.g., "https://github.com/GeoNode/ethnode.git"
     branch_name: master
     virtualenv_dir: "/home/ubuntu/.venvs"
