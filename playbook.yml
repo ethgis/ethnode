@@ -3,15 +3,15 @@
   remote_user: ubuntu
   vars:
     app_name: ethnode
-    github_user: geonode
-    server_name: ethiopia.terranodo.co
-    deploy_user: ubuntu
+    github_user: ethgis
+    server_name: geonode.eeu.gov.et
+    deploy_user: ueap
     geonode_version: "ansible-installation"
-    geonode_repository: "https://github.com/ingenieroariel/geonode.git"
+    geonode_repository: "https://github.com/GeoNode/geonode.git"
     code_repository: "https://github.com/ethgis/ethnode.git" # e.g., "https://github.com/GeoNode/ethnode.git"
     branch_name: master
     virtualenv_dir: "/home/ubuntu/.venvs"
-    site_url: "http://ethiopia.terranodo.co/" # The public url of the GeoNode instance
+    site_url: "http://geonode.eeu.gov.et/" # The public url of the GeoNode instance
     geoserver_url: "http://build.geonode.org/geoserver/latest/geoserver-2.12.x.war" # geoserver_url should match what is found in dev_config.yml
     geoserver_data_url: "http://build.geonode.org/geoserver/latest/data-2.12.x.zip"
     pg_max_connections: 100
