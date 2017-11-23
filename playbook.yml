@@ -6,8 +6,8 @@
     github_user: ethgis
     server_name: geonode.eeu.gov.et
     deploy_user: ueap
-    geonode_version: "ansible-installation"
-    geonode_repository: "https://github.com/GeoNode/geonode.git"
+    geonode_version: "master"
+    geonode_repository: "https://github.com/ethgis/geonode.git"
     code_repository: "https://github.com/ethgis/ethnode.git" # e.g., "https://github.com/GeoNode/ethnode.git"
     branch_name: master
     virtualenv_dir: "/home/ueap/.venvs"
