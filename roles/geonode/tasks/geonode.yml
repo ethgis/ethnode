@@ -84,6 +84,14 @@
   shell: sed -i -e "s/ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', \['localhost', \])/ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', \['localhost', '{{ server_name }}'\])/g" {{app_code_dir}}/{{app_name}}/{{app_name}}/settings.py
   when: github_user != "GeoNode"
 
+- name: copy local_settings.py information onto settings.py
+  shell: cat {{app_code_dir}}/{{app_name}}/{{app_name}}/local_settings.py >> {{app_code_dir}}/{{app_name}}/{{app_name}}/settings.py
+  when: github_user != "GeoNode"
+
+- name: Remove local_settings file
+  file: {{app_code_dir}}/{{app_name}}/{{app_name}}/local_settings.py
+  state: absent
+
 - name: patch hostname in settings.py
   shell: sed -i -e "s/localhost:8080/{{ server_name }}/g" {{app_code_dir}}/{{app_name}}/{{app_name}}/settings.py
   when: github_user != "GeoNode"
