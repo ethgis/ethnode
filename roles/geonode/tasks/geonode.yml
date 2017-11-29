@@ -80,20 +80,21 @@
 - name: copy the local_settings.py file in place
   template: src=local_settings.py.j2 dest={{app_code_dir}}/{{app_name}}/{{app_name}}/local_settings.py
 
-- name: patch allowed hosts in settings.py
-  shell: sed -i -e "s/ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', \['localhost', \])/ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', \['localhost', '{{ server_name }}'\])/g" {{app_code_dir}}/{{app_name}}/{{app_name}}/settings.py
-  when: github_user != "GeoNode"
+- name: Reading local into data variable
+  shell: cat {{app_code_dir}}/{{app_name}}/{{app_name}}/local_settings.py
+  register: localdata
 
-- name: copy local_settings.py information onto settings.py
-  shell: cat {{app_code_dir}}/{{app_name}}/{{app_name}}/local_settings.py >> {{app_code_dir}}/{{app_name}}/{{app_name}}/settings.py
-  when: github_user != "GeoNode"
+
+- name: Copy local_settings.py onto settings.py
+  blockinfile: 
+    dest: "{{app_code_dir}}/{{app_name}}/{{app_name}}/settings.py"
+    insertafter: "TEMPLATES[0].pop('APP_DIRS', None)"
+    content: |
+        {{localdata.stdout}}
 
 - name: Remove local_settings file
   file: path={{app_code_dir}}/{{app_name}}/{{app_name}}/local_settings.py state=absent
 
-- name: patch hostname in settings.py
-  shell: sed -i -e "s/localhost:8080/{{ server_name }}/g" {{app_code_dir}}/{{app_name}}/{{app_name}}/settings.py
-  when: github_user != "GeoNode"
 
 - name: install geonode-user-accounts dependency
   pip: name='git+git://github.com/cezio/django-user-accounts@252_255_mixed#egg=django-user-accounts' virtualenv={{virtualenv_dir}}/{{app_name}} 
@@ -261,3 +262,7 @@
                  app_path={{app_code_dir}}/{{app_name}}
                  virtualenv={{virtualenv_dir}}/{{app_name}}
                  settings={{main_module}}.settings
+
+- name: restart uwsgi service 
+  sudo: yes
+  shell: service uwsgi-emperor restart
