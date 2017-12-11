@@ -4,14 +4,14 @@
   vars:
     app_name: ethnode
     github_user: ethgis
-    server_name: geonode.mowie.gov.et
-    deploy_user: mowie
+    server_name: geonode.eeu.gov.et
+    deploy_user: ueap
     geonode_version: "master"
     geonode_repository: "https://github.com/ethgis/geonode.git"
     code_repository: "https://github.com/ethgis/ethnode.git" # e.g., "https://github.com/GeoNode/ethnode.git"
     branch_name: master
-    virtualenv_dir: "/home/mowie/.venvs"
-    site_url: "http://geonode.mowie.gov.et/" # The public url of the GeoNode instance
+    virtualenv_dir: "/home/ueap/.venvs"
+    site_url: "http://geonode.eeu.gov.et/" # The public url of the GeoNode instance
     geoserver_url: "http://build.geonode.org/geoserver/latest/geoserver-2.12.x.war" # geoserver_url should match what is found in dev_config.yml
     geoserver_data_url: "http://build.geonode.org/geoserver/latest/data-2.12.x.zip"
     pg_max_connections: 100
