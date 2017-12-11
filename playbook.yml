@@ -1,6 +1,6 @@
 - name: Provision a GeoNode into Production
   hosts: production
-  remote_user: ueap
+  remote_user: mowie
   vars:
     app_name: ethnode
     github_user: ethgis
