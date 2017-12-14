@@ -232,11 +232,11 @@
   #retries: 5 
   #delay: 60
 
-- name: Copy create_db_store script in place
-  template: src=create_db_store.py.j2 dest={{app_code_dir}}/{{app_name}}/create_db_store.py
+                 #- name: Copy create_db_store script in place
+                 # template: src=create_db_store.py.j2 dest={{app_code_dir}}/{{app_name}}/create_db_store.py
 
-- name: create the db datastore in geoserver
-  command: "{{virtualenv_dir}}/{{app_name}}/bin/python {{app_code_dir}}/{{app_name}}/create_db_store.py"
+                 #- name: create the db datastore in geoserver
+                 #  command: "{{virtualenv_dir}}/{{app_name}}/bin/python {{app_code_dir}}/{{app_name}}/create_db_store.py"
 
 - name: Copy super user fixture in place
   template: src=sample_admin.json.j2 dest={{app_code_dir}}/{{app_name}}/sample_admin.json
