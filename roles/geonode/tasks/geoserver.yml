@@ -30,49 +30,49 @@
     state: stopped
 
 
-- name: download GeoServer (remote)
-  sudo: yes
-  get_url: dest=/var/lib/tomcat8/webapps/geoserver.war url={{ geoserver_url }} owner=root group=root mode=0777
+    #- name: download GeoServer (remote)
+    #  sudo: yes
+    # get_url: dest=/var/lib/tomcat8/webapps/geoserver.war url={{ geoserver_url }} owner=root group=root mode=0777
 
-- name: Create geoserver folder
-  sudo: yes
-  file: path=/var/lib/tomcat8/webapps/geoserver/ state=directory owner=root group=root mode=0777
+    #- name: Create geoserver folder
+    # sudo: yes
+    #file: path=/var/lib/tomcat8/webapps/geoserver/ state=directory owner=root group=root mode=0777
 
-- name: Unpack geoserver on webapps folder
-  sudo: yes
-  unarchive: src=/var/lib/tomcat8/webapps/geoserver.war dest=/var/lib/tomcat8/webapps/geoserver/ remote_src=yes
+    #- name: Unpack geoserver on webapps folder
+    # sudo: yes
+    # unarchive: src=/var/lib/tomcat8/webapps/geoserver.war dest=/var/lib/tomcat8/webapps/geoserver/ remote_src=yes
 
-- name: remove geoserver.war
-  sudo: yes
-  file:
-    path: /var/lib/tomcat8/webapps/geoserver.war
-    state: absent
+    #- name: remove geoserver.war
+    # sudo: yes
+    #file:
+    # path: /var/lib/tomcat8/webapps/geoserver.war
+    #state: absent
 
-- name: remove default data folder if oauth2 GeoServer used
-  sudo: yes
-  file:
-    path: /var/lib/tomcat8/webapps/geoserver/data
-    state: absent
+    #- name: remove default data folder if oauth2 GeoServer used
+  # sudo: yes
+  # file:
+      #  path: /var/lib/tomcat8/webapps/geoserver/data
+    #   state: absent
 
-- name: download oauth2 data folder (remote)
-  sudo: yes
-  get_url:
-    dest=/var/lib/tomcat8/webapps/geoserver/data.zip
-    url={{ geoserver_data_url }}
-    owner=tomcat8
-    group=tomcat8
-    mode=0644
+    #- name: download oauth2 data folder (remote)
+  # sudo: yes
+  #  get_url:
+      #dest=/var/lib/tomcat8/webapps/geoserver/data.zip
+    # url={{ geoserver_data_url }}
+    #owner=tomcat8
+    #  group=tomcat8
+    #    mode=0644
 
 
-- name: unzip oauth2 data folder
-  sudo: yes
-  shell: "cd /var/lib/tomcat8/webapps/geoserver && unzip data.zip && chown -R tomcat8:tomcat8 data"
+    #- name: unzip oauth2 data folder
+  #sudo: yes
+  # shell: "cd /var/lib/tomcat8/webapps/geoserver && unzip data.zip && chown -R tomcat8:tomcat8 data"
 
-- name: remove data.zip
-  sudo: yes
-  file:
-    path: /var/lib/tomcat8/webapps/geoserver/data.zip
-    state: absent
+  #- name: remove data.zip
+  # sudo: yes
+  # file:
+      #path: /var/lib/tomcat8/webapps/geoserver/data.zip
+    #   state: absent
 
 - name: check if logstore file exists
   sudo: yes
