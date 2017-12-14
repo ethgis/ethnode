@@ -96,8 +96,8 @@
   file: path={{app_code_dir}}/{{app_name}}/{{app_name}}/local_settings.py state=absent
 
 
-- name: install geonode-user-accounts dependency
-  pip: name='git+git://github.com/cezio/django-user-accounts@252_255_mixed#egg=django-user-accounts' virtualenv={{virtualenv_dir}}/{{app_name}} 
+  #- name: install geonode-user-accounts dependency
+  # pip: name='git+git://github.com/cezio/django-user-accounts@252_255_mixed#egg=django-user-accounts' virtualenv={{virtualenv_dir}}/{{app_name}} 
 
 - name: checkout geonode code
   git: repo={{geonode_repository}} version={{geonode_version}} dest={{app_code_dir}}/geonode
